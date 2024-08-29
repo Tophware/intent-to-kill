@@ -1,43 +1,36 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.authority {
+  background-color: #253d7f;
+
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.criminals {
+  background-color: #981a2b;
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.government {
+  background-color: #7d4e9f;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.immigrants {
+  background-color: #1890ba;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.jetset {
+  background-color: #d12e7c;
 }
 
-.card {
-  padding: 2em;
+.labor {
+  background-color: #f58229;
 }
 
-.read-the-docs {
-  color: #888;
+.medicine {
+  background-color: #007350;
+}
+
+.outcasts {
+  background-color: #74432d;
+}
+
+.press {
+  background-color: #eea616;
 }

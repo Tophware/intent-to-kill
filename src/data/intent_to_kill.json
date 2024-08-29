@@ -1,0 +1,436 @@
+{
+    "Sheet1": [
+        {
+            "Name": "Bartender",
+            "Social Group": "Criminals",
+            "Gender": "F",
+            "Age": 40,
+            "Build": "L",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Fence",
+            "Social Group": "Criminals",
+            "Gender": "F",
+            "Age": 60,
+            "Build": "M",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Informant",
+            "Social Group": "Criminals",
+            "Gender": "F",
+            "Age": 20,
+            "Build": "S",
+            "Height": "Short"
+        },
+        {
+            "Name": "Bouncer",
+            "Social Group": "Criminals",
+            "Gender": "M",
+            "Age": 20,
+            "Build": "L",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Gangster",
+            "Social Group": "Criminals",
+            "Gender": "M",
+            "Age": 40,
+            "Build": "M",
+            "Height": "Short"
+        },
+        {
+            "Name": "Mafia Don",
+            "Social Group": "Criminals",
+            "Gender": "M",
+            "Age": 60,
+            "Build": "S",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Bus Driver",
+            "Social Group": "Labor",
+            "Gender": "M",
+            "Age": 60,
+            "Build": "L",
+            "Height": "Short"
+        },
+        {
+            "Name": "Waitress",
+            "Social Group": "Labor",
+            "Gender": "F",
+            "Age": 40,
+            "Build": "M",
+            "Height": "Short"
+        },
+        {
+            "Name": "Riveter",
+            "Social Group": "Labor",
+            "Gender": "F",
+            "Age": 20,
+            "Build": "L",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Librarian",
+            "Social Group": "Labor",
+            "Gender": "F",
+            "Age": 60,
+            "Build": "S",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Ice Cream Man",
+            "Social Group": "Labor",
+            "Gender": "M",
+            "Age": 20,
+            "Build": "M",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Fireman",
+            "Social Group": "Labor",
+            "Gender": "M",
+            "Age": 40,
+            "Build": "S",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Musician",
+            "Social Group": "Immigrants",
+            "Gender": "M",
+            "Age": 40,
+            "Build": "L",
+            "Height": "Short"
+        },
+        {
+            "Name": "Nun",
+            "Social Group": "Immigrants",
+            "Gender": "F",
+            "Age": 60,
+            "Build": "L",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Psychic",
+            "Social Group": "Immigrants",
+            "Gender": "F",
+            "Age": 20,
+            "Build": "M",
+            "Height": "Short"
+        },
+        {
+            "Name": "Professor",
+            "Social Group": "Immigrants",
+            "Gender": "M",
+            "Age": 60,
+            "Build": "M",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Navy Sailor",
+            "Social Group": "Immigrants",
+            "Gender": "M",
+            "Age": 20,
+            "Build": "S",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Cabin Crew",
+            "Social Group": "Immigrants",
+            "Gender": "F",
+            "Age": 40,
+            "Build": "S",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Congressman",
+            "Social Group": "Government",
+            "Gender": "M",
+            "Age": 60,
+            "Build": "L",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Secret Agent",
+            "Social Group": "Government",
+            "Gender": "M",
+            "Age": 20,
+            "Build": "M",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Mayor",
+            "Social Group": "Government",
+            "Gender": "M",
+            "Age": 40,
+            "Build": "S",
+            "Height": "Short"
+        },
+        {
+            "Name": "Secretary",
+            "Social Group": "Government",
+            "Gender": "F",
+            "Age": 20,
+            "Build": "L",
+            "Height": "Short"
+        },
+        {
+            "Name": "Ambassador",
+            "Social Group": "Government",
+            "Gender": "F",
+            "Age": 40,
+            "Build": "M",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Lobbyist",
+            "Social Group": "Government",
+            "Gender": "F",
+            "Age": 60,
+            "Build": "S",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Pharmacist",
+            "Social Group": "Medicine",
+            "Gender": "F",
+            "Age": 20,
+            "Build": "L",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Veterinarian",
+            "Social Group": "Medicine",
+            "Gender": "M",
+            "Age": 60,
+            "Build": "L",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Nurse",
+            "Social Group": "Medicine",
+            "Gender": "F",
+            "Age": 40,
+            "Build": "M",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Surgeon",
+            "Social Group": "Medicine",
+            "Gender": "M",
+            "Age": 40,
+            "Build": "S",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Orderly",
+            "Social Group": "Medicine",
+            "Gender": "M",
+            "Age": 20,
+            "Build": "M",
+            "Height": "Short"
+        },
+        {
+            "Name": "Coroner",
+            "Social Group": "Medicine",
+            "Gender": "F",
+            "Age": 60,
+            "Build": "S",
+            "Height": "Short"
+        },
+        {
+            "Name": "Judge",
+            "Social Group": "Authority",
+            "Gender": "F",
+            "Age": 60,
+            "Build": "L",
+            "Height": "Short"
+        },
+        {
+            "Name": "Patrolman",
+            "Social Group": "Authority",
+            "Gender": "M",
+            "Age": 20,
+            "Build": "S",
+            "Height": "Short"
+        },
+        {
+            "Name": "State Attorney",
+            "Social Group": "Authority",
+            "Gender": "M",
+            "Age": 40,
+            "Build": "L",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Deputy",
+            "Social Group": "Authority",
+            "Gender": "F",
+            "Age": 20,
+            "Build": "M",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Lawyer",
+            "Social Group": "Authority",
+            "Gender": "F",
+            "Age": 40,
+            "Build": "S",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Dispatcher",
+            "Social Group": "Authority",
+            "Gender": "M",
+            "Age": 60,
+            "Build": "M",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Beggar",
+            "Social Group": "Outcasts",
+            "Gender": "M",
+            "Age": 60,
+            "Build": "S",
+            "Height": "Short"
+        },
+        {
+            "Name": "Veteran",
+            "Social Group": "Outcasts",
+            "Gender": "M",
+            "Age": 40,
+            "Build": "M",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Greaser",
+            "Social Group": "Outcasts",
+            "Gender": "M",
+            "Age": 20,
+            "Build": "L",
+            "Height": "Medium"
+        },
+        {
+            "Name": "War Widow",
+            "Social Group": "Outcasts",
+            "Gender": "F",
+            "Age": 40,
+            "Build": "L",
+            "Height": "Short"
+        },
+        {
+            "Name": "Cat Lady",
+            "Social Group": "Outcasts",
+            "Gender": "F",
+            "Age": 60,
+            "Build": "M",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Showgirl",
+            "Social Group": "Outcasts",
+            "Gender": "F",
+            "Age": 20,
+            "Build": "S",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Ballplayer",
+            "Social Group": "Jet Set",
+            "Gender": "M",
+            "Age": 20,
+            "Build": "L",
+            "Height": "Short"
+        },
+        {
+            "Name": "Benefactor",
+            "Social Group": "Jet Set",
+            "Gender": "M",
+            "Age": 40,
+            "Build": "M",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Restaurateur",
+            "Social Group": "Jet Set",
+            "Gender": "F",
+            "Age": 60,
+            "Build": "M",
+            "Height": "Short"
+        },
+        {
+            "Name": "Actress",
+            "Social Group": "Jet Set",
+            "Gender": "F",
+            "Age": 20,
+            "Build": "S",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Psychiatrist",
+            "Social Group": "Jet Set",
+            "Gender": "M",
+            "Age": 60,
+            "Build": "S",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Artist",
+            "Social Group": "Jet Set",
+            "Gender": "F",
+            "Age": 40,
+            "Build": "L",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Newscaster",
+            "Social Group": "Press",
+            "Gender": "M",
+            "Age": 60,
+            "Build": "M",
+            "Height": "Short"
+        },
+        {
+            "Name": "Paperboy",
+            "Social Group": "Press",
+            "Gender": "M",
+            "Age": 20,
+            "Build": "S",
+            "Height": "Medium"
+        },
+        {
+            "Name": "Photographer",
+            "Social Group": "Press",
+            "Gender": "M",
+            "Age": 40,
+            "Build": "L",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Reporter",
+            "Social Group": "Press",
+            "Gender": "F",
+            "Age": 20,
+            "Build": "M",
+            "Height": "Tall"
+        },
+        {
+            "Name": "Mailwoman",
+            "Social Group": "Press",
+            "Gender": "F",
+            "Age": 40,
+            "Build": "S",
+            "Height": "Short"
+        },
+        {
+            "Name": "Editor",
+            "Social Group": "Press",
+            "Gender": "F",
+            "Age": 60,
+            "Build": "L",
+            "Height": "Medium"
+        }
+    ]
+}
