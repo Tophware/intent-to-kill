@@ -1,7 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import MyStack from "../components/MyStack";
-import QRCodeURL from "../components/QRCodeURL";
 import { GameContext } from "../GameContext";
 
 const Home: React.FC = () => {
@@ -17,12 +16,11 @@ const Home: React.FC = () => {
         color="primary"
         size="large"
         onClick={() => {
-          game.initGame && game.initGame();
+          game.initGame();
         }}
       >
         Start Game
       </Button>
-      <QRCodeURL />
     </MyStack>
   ) : (
     <div>Loading...</div>
