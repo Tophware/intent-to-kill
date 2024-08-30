@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -28,18 +27,7 @@ const MurdererDetails = () => {
   const game = useContext(GameContext);
   return (
     <>
-      <MyAppBar
-        actions={
-          <Button
-            color="inherit"
-            onClick={() => {
-              game.quit();
-            }}
-          >
-            Quit
-          </Button>
-        }
-      />
+      <MyAppBar />
       <Container maxWidth="md">
         <Stack spacing={4}>
           <Typography variant="h3" aria-level={1} gutterBottom>

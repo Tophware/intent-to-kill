@@ -1,4 +1,4 @@
-import { Button, Container, Grid2 as Grid, Typography } from "@mui/material";
+import { Container, Grid2 as Grid, Typography } from "@mui/material";
 import { useContext } from "react";
 import { GameContext } from "../GameContext";
 
@@ -10,19 +10,7 @@ const ShowCharacters = () => {
 
   return (
     <>
-      <MyAppBar
-        actions={
-          <Button
-            variant="contained"
-            color="inherit"
-            onClick={() => {
-              game.showMotive();
-            }}
-          >
-            Murderer Details
-          </Button>
-        }
-      />
+      <MyAppBar />
       <Container maxWidth="md">
         <Typography variant="h3" aria-level={1} gutterBottom>
           Characters
