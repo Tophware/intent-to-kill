@@ -1,12 +1,8 @@
 import { AppBar, Box, Button, Toolbar } from "@mui/material";
-import { ReactNode, useContext } from "react";
+import { useContext } from "react";
 import { GameContext } from "../GameContext";
 
-type MyAppBarProps = {
-  actions?: ReactNode;
-};
-
-export const MyAppBar = ({ actions }: MyAppBarProps) => {
+export const MyAppBar = () => {
   const game = useContext(GameContext);
   return (
     <>

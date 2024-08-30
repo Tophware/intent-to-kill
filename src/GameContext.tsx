@@ -5,7 +5,7 @@ import { Character, GameAction, SocialGroup } from "./types";
 import { MotiveCard } from "./types/MotiveCard";
 
 const WARNING_MURDERER = "The following screen is for the Murderer only!";
-const WARNING_DETECTIVE = "The following screen is for the Detective only!";
+// const WARNING_DETECTIVE = "The following screen is for the Detective only!";
 
 type GameState = {
   currentAction?: GameAction;
