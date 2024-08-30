@@ -26,8 +26,8 @@ const History: React.FC = () => {
         pt={2}
         pb={2}
       >
-        {game.history?.map((group) => (
-          <Card key={group} sx={{ width: "100%" }}>
+        {game.history?.map((group, index) => (
+          <Card key={`${group}-${index}`} sx={{ width: "100%" }}>
             <CardContent className={group.toLowerCase()}>
               <Stack
                 direction={"row"}

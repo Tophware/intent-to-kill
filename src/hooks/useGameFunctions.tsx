@@ -1,6 +1,6 @@
-import { MotiveCard, SocialGroup } from "../types";
+import { SocialGroup } from "../types";
+import { MotiveCard } from "../types/MotiveCard";
 import { useCharacters } from "./useCharacters";
-import useUtils from "./useUtils";
 
 export const allSocialGroups = () => {
   return [
@@ -18,7 +18,18 @@ export const allSocialGroups = () => {
 
 const getCharacters = (count: number) => {
   const characters = useCharacters();
-  return characters.sort(() => Math.random() - 0.5).slice(0, count);
+  let uniqueGroups = 0;
+  let selectedCharacters;
+  do {
+    selectedCharacters = characters
+      .sort(() => Math.random() - 0.5)
+      .slice(0, count);
+    uniqueGroups = [
+      ...new Set(selectedCharacters.map((character) => character.group)),
+    ].length;
+  } while (uniqueGroups < 5);
+  console.log(uniqueGroups);
+  return selectedCharacters;
 };
 
 const getSupporters = (count: number) => {
@@ -26,9 +37,9 @@ const getSupporters = (count: number) => {
   return socialGroups.sort(() => Math.random() - 0.5).slice(0, count);
 };
 
-const getMotive = () => {
-  const { getRandomEnum } = useUtils();
-  return getRandomEnum(MotiveCard);
+const getMotive = (collection: Array<MotiveCard>) => {
+  const randomIndex = Math.floor(Math.random() * collection.length);
+  return collection[randomIndex];
 };
 
 export const useGameFunctions = () => {

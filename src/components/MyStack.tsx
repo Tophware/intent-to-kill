@@ -1,22 +1,24 @@
-import { Container, Stack } from "@mui/material";
+import { Property } from "csstype";
+import { StyledContainer, StyledStack } from "./StyledContainer";
 
 type Props = {
   children?: React.ReactNode;
+  justifyContent?: Property.JustifyContent;
 };
 
-const MyStack = ({ children }: Props) => {
+const MyStack = ({ children, justifyContent }: Props) => {
   return (
-    <Container maxWidth="md">
-      <Stack
+    <StyledContainer maxWidth="md">
+      <StyledStack
         spacing={2}
         direction={"column"}
         alignItems={"center"}
-        justifyContent={"space-evenly"}
-        sx={{ height: "100vh" }}
+        justifyContent={justifyContent}
+        sx={{ height: "calc(100dvh - 60px)" }}
       >
         {children}
-      </Stack>
-    </Container>
+      </StyledStack>
+    </StyledContainer>
   );
 };
 

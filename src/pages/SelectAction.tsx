@@ -1,4 +1,4 @@
-import { Button, Container, Stack, Typography } from "@mui/material";
+import { Button, Container, Divider, Stack, Typography } from "@mui/material";
 import { useContext } from "react";
 import { GameContext } from "../GameContext";
 
@@ -17,28 +17,73 @@ const SelectAction = () => {
         <Typography variant="h3" aria-level={1} gutterBottom>
           Select Action
         </Typography>
-        <Button
-          size="large"
-          variant="contained"
-          color="primary"
-          fullWidth
-          onClick={() => {
-            game.firehouse();
-          }}
-        >
-          Firehouse Action
-        </Button>
-        <Button
-          size="large"
-          variant="contained"
-          color="primary"
-          fullWidth
-          onClick={() => {
-            game.showHistory();
-          }}
-        >
-          History
-        </Button>
+        {game.supporters ? (
+          <>
+            <Button
+              size="large"
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={() => {
+                game.firehouse();
+              }}
+            >
+              Firehouse Action
+            </Button>
+            <Button
+              size="large"
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={() => {
+                game.showHistory();
+              }}
+            >
+              History
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              size="large"
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={() => {
+                game.showCharacters();
+              }}
+            >
+              Characters
+            </Button>
+            <Divider />
+            <Typography variant="h4" aria-level={2} gutterBottom>
+              Murderer Only
+            </Typography>
+
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              fullWidth
+              onClick={() => {
+                game.showPossibleSupporters();
+              }}
+            >
+              Select Supporters
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              fullWidth
+              onClick={() => {
+                game.showMotive();
+              }}
+            >
+              Murderer Details
+            </Button>
+          </>
+        )}
       </Stack>
     </Container>
   );

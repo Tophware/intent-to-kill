@@ -1,5 +1,6 @@
-import { Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React, { useContext } from "react";
+import IntentToKill from "../assets/intent-to-kill-logo.svg";
 import MyStack from "../components/MyStack";
 import { GameContext } from "../GameContext";
 
@@ -7,10 +8,9 @@ const Home: React.FC = () => {
   const game = useContext(GameContext);
 
   return game ? (
-    <MyStack>
-      <Typography variant="h2" aria-level={1} gutterBottom>
-        Intent to Kill
-      </Typography>
+    <MyStack justifyContent={"space-between"}>
+      <Box component="img" src={IntentToKill} alt="Intent to Kill" />
+
       <Button
         variant="outlined"
         color="primary"
@@ -21,6 +21,7 @@ const Home: React.FC = () => {
       >
         Start Game
       </Button>
+      <Box />
     </MyStack>
   ) : (
     <div>Loading...</div>

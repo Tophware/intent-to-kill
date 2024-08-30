@@ -10,9 +10,14 @@ const ShowMotive = () => {
       <Typography variant="h3" aria-level={1} gutterBottom>
         Motive
       </Typography>
-      <Typography variant="h4" aria-level={2} align="center">
-        {game.motive}
-      </Typography>
+      <div>
+        <Typography variant="h4" aria-level={2} align="center">
+          {game.motive?.motive}
+        </Typography>
+        <Typography variant="body1" align="center">
+          {game.motive?.description}
+        </Typography>
+      </div>
       <Button
         variant="outlined"
         color="primary"

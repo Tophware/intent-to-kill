@@ -10,4 +10,5 @@ export enum GameAction {
   ShowActions = "ShowActions",
   ShowHistory = "ShowHistory",
   ShowPossibleSupporters = "ShowPossibleSupporters",
+  Statistics = "Statistics",
 }
