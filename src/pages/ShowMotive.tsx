@@ -1,10 +1,10 @@
 import { Button, Typography } from "@mui/material";
-import { useContext } from "react";
-import { GameContext } from "../GameContext";
 import MyStack from "../components/MyStack";
+import { useGameContext } from "../GameContext";
 
 const ShowMotive = () => {
-  const game = useContext(GameContext);
+  const { gameState: game } = useGameContext();
+
   return (
     <MyStack>
       <Typography variant="h3" aria-level={1} gutterBottom>
@@ -23,7 +23,7 @@ const ShowMotive = () => {
         color="primary"
         size="large"
         onClick={() => {
-          game.showPossibleSupporters();
+          // Show supporters
         }}
       >
         Select Killer Supporters

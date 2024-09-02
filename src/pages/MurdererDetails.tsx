@@ -8,10 +8,9 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { useContext } from "react";
-import { GameContext } from "../GameContext";
 import { CharacterCard } from "../components/CharacterCard";
 import { MyAppBar } from "../components/MyAppBar";
+import { useGameContext } from "../GameContext";
 
 const MurdererCardContent = styled(CardContent)(({ theme }) => ({
   backgroundColor: "#f3eee9",
@@ -24,7 +23,8 @@ const MurdererCardHeader = styled(CardHeader)(({ theme }) => ({
 }));
 
 const MurdererDetails = () => {
-  const game = useContext(GameContext);
+  const { gameState: game } = useGameContext();
+
   return (
     <>
       <MyAppBar />

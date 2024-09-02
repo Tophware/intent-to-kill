@@ -1,20 +1,13 @@
 import { AppBar, Box, Button, Toolbar } from "@mui/material";
-import { useContext } from "react";
-import { GameContext } from "../GameContext";
+import { Link } from "react-router-dom";
 
 export const MyAppBar = () => {
-  const game = useContext(GameContext);
   return (
     <>
       <AppBar position="fixed">
         <Toolbar>
           <Box sx={{ flexGrow: 1 }} />
-          <Button
-            color="inherit"
-            onClick={() => {
-              game.showActionSelection();
-            }}
-          >
+          <Button component={Link} to="/" color="inherit">
             Back
           </Button>
         </Toolbar>

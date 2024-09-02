@@ -1,9 +1,12 @@
 import { Button, Container, Divider, Stack, Typography } from "@mui/material";
-import { useContext } from "react";
-import { GameContext } from "../GameContext";
+import { Link } from "react-router-dom";
+import { useGameContext } from "../GameContext";
+import { useGameActions } from "../hooks/useGameActions";
 
 const SelectAction = () => {
-  const game = useContext(GameContext);
+  const { gameState: game } = useGameContext();
+  const { quit } = useGameActions();
+
   return (
     <Container maxWidth="md">
       <Stack
@@ -17,29 +20,37 @@ const SelectAction = () => {
         <Typography variant="h3" aria-level={1} gutterBottom>
           Select Action
         </Typography>
-        {game.supporters ? (
+        {game!.supporters ? (
           <>
             <Button
+              component={Link}
+              to="/firehouse"
               size="large"
               variant="contained"
               color="primary"
               fullWidth
-              onClick={() => {
-                game.firehouse();
-              }}
             >
               Firehouse Action
             </Button>
             <Button
+              component={Link}
+              to="/history"
               size="large"
               variant="contained"
               color="primary"
               fullWidth
-              onClick={() => {
-                game.showHistory();
-              }}
             >
               History
+            </Button>
+            <Divider />
+            <Button
+              onClick={quit}
+              size="large"
+              variant="contained"
+              color="primary"
+              fullWidth
+            >
+              Quit
             </Button>
           </>
         ) : (
@@ -49,9 +60,7 @@ const SelectAction = () => {
               variant="contained"
               color="primary"
               fullWidth
-              onClick={() => {
-                game.showCharacters();
-              }}
+              onClick={() => {}}
             >
               Characters
             </Button>
@@ -61,24 +70,22 @@ const SelectAction = () => {
             </Typography>
 
             <Button
+              component={Link}
+              to="/select-supporters"
               variant="contained"
               color="primary"
               size="large"
               fullWidth
-              onClick={() => {
-                game.showPossibleSupporters();
-              }}
             >
               Select Supporters
             </Button>
             <Button
+              component={Link}
+              to="/murderer-details"
               variant="contained"
               color="primary"
               size="large"
               fullWidth
-              onClick={() => {
-                game.showMotive();
-              }}
             >
               Murderer Details
             </Button>

@@ -1,18 +1,41 @@
 import { Button } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useEffect, useRef } from "react";
+import { Navigate } from "react-router";
+import { Link } from "react-router-dom";
 import MyStack from "../components/MyStack";
 import SocialGroupCard from "../components/SocialGroupCard";
-import { GameContext } from "../GameContext";
+import { useGameContext } from "../GameContext";
+import { useGameActions } from "../hooks/useGameActions";
 
 const Firehouse: React.FC = () => {
-  const game = useContext(GameContext);
-  const lastGroup = game.history[game.history.length - 1];
-  return (
-    <MyStack>
-      <SocialGroupCard group={lastGroup} />
-      <Button onClick={game.showActionSelection}>Back</Button>
-    </MyStack>
-  );
+  const { gameState: game } = useGameContext();
+  const { firehouse } = useGameActions();
+  const hasRun = useRef<boolean>(false);
+  useEffect(() => {
+    if (!hasRun.current) {
+      console.log("Calling firehouse???");
+      firehouse();
+      console.log(game?.history);
+      hasRun.current = true;
+    }
+  }, []);
+
+  if (game && game.history) {
+    return (
+      <MyStack>
+        {game.history.length > 0 ? (
+          <SocialGroupCard group={game.history[game.history.length - 1]} />
+        ) : (
+          <div>No history</div>
+        )}
+        <Button component={Link} to="/">
+          Back
+        </Button>
+      </MyStack>
+    );
+  } else {
+    <Navigate to="/" />;
+  }
 };
 
 export default Firehouse;

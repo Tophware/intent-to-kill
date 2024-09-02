@@ -1,7 +1,5 @@
 import WarningTwoToneIcon from "@mui/icons-material/WarningTwoTone";
 import { Button, Container, Stack, Typography, styled } from "@mui/material";
-import { useContext } from "react";
-import { GameContext } from "../GameContext";
 
 const WarningStack = styled(Stack)({
   height: "calc(100dvh - 60px)",
@@ -14,7 +12,6 @@ const WarningContainer = styled(Container)(({ theme }) => ({
 }));
 
 const Warning = () => {
-  const game = useContext(GameContext);
   return (
     <WarningContainer maxWidth="md">
       <WarningStack spacing={2} alignItems={"center"}>
@@ -23,13 +20,13 @@ const Warning = () => {
         </Typography>
 
         <WarningTwoToneIcon style={{ fontSize: "10rem" }} />
-        <Typography variant="body1">{game.warningMessage}</Typography>
+        <Typography variant="body1">{"game.warningMessage"}</Typography>
         <Button
           variant="contained"
           size="large"
           color="warning"
           onClick={() => {
-            game.dismissWarning();
+            // game.dismissWarning();
           }}
         >
           Continue

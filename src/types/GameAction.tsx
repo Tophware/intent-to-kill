@@ -1,4 +1,4 @@
-export enum GameAction {
+export enum GameActionOld {
   ShowMotive = "ShowMotive",
   ShowCharacters = "ShowCharacters",
   SelectKillerCharacter = "SelectKillerCharacter",
