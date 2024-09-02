@@ -9,6 +9,8 @@ import {
 import { Character, SocialGroup } from "./types";
 import { MotiveCard } from "./types/MotiveCard";
 
+const LOCAL_STORAGE_KEY = "gameState";
+
 type GameState = {
   socialGroups?: SocialGroup[];
   possibleSupporters?: SocialGroup[];
@@ -17,6 +19,7 @@ type GameState = {
   supporters?: SocialGroup;
   motive?: MotiveCard;
   murderer?: Character;
+  detective?: Character;
   personOfInterest?: Character;
   statistics?: { [key: string]: number };
 };
@@ -56,6 +59,7 @@ const gameReducer = (gameState: GameState, action: GameAction): GameState => {
       history.push(randomGroup);
       return { ...gameState, history };
     case "QUIT":
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
       return { ...initialState };
     default:
       throw new Error(`Unhandled action`);
@@ -66,19 +70,16 @@ const GameContextProvider = ({ children }: GameProviderProps) => {
   const [gameState, dispatch] = useReducer(gameReducer, initialState);
 
   useEffect(() => {
-    const savedGameState = localStorage.getItem("gameState");
+    const savedGameState = localStorage.getItem(LOCAL_STORAGE_KEY);
 
     if (savedGameState) {
-      console.log("Game state loaded from local storage");
-      console.log(savedGameState);
       dispatch({ type: "START", payload: JSON.parse(savedGameState) });
     }
   }, []);
 
   useEffect(() => {
     if (gameState && gameState.murderer) {
-      console.log("Game state saved to local storage");
-      localStorage.setItem("gameState", JSON.stringify(gameState));
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(gameState));
     }
   }, [gameState]);
 

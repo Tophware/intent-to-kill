@@ -3,6 +3,7 @@ import { Build, Character, Gender, Height, SocialGroup } from "../types";
 import { MotiveCard } from "../types/MotiveCard";
 import { useCharacters } from "./useCharacters";
 import { useMotives } from "./useMotives";
+import useUtils from "./useUtils";
 
 const calculateStatistics = (characters: Array<Character>) => {
   let statistics: { [key: string | number]: number } = {};
@@ -38,20 +39,29 @@ export const useGameActions = () => {
 
   const { starterMotives } = useMotives();
 
+  const { shuffleArray } = useUtils();
+
   const startGame = () => {
-    const allCharacters: Character[] = useCharacters();
+    const { characters: allCharacters } = useCharacters();
 
     // Get 20 random characters
-    let characters: Character[] = allCharacters
+    let characters: Character[] = [...allCharacters]
       .sort(() => 0.5 - Math.random())
       .slice(0, 20);
 
+    console.log(characters);
     // Identify the Murderer and Person of Interest
-    let villains: Character[] = characters
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 2);
-    let murderer: Character = villains[0];
-    let personOfInterest: Character = villains[1];
+    let villains: Character[] = [...characters].sort(() => 0.5 - Math.random());
+
+    let murderer: Character = villains.splice(
+      Math.floor(Math.random() * villains.length - 1),
+      1
+    )[0];
+
+    let personOfInterest: Character = villains.splice(
+      Math.floor(Math.random() * villains.length - 1),
+      1
+    )[0];
 
     // Get 3 random social groups
     let socialGroups = Object.values(SocialGroup).sort(

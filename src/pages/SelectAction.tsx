@@ -10,7 +10,7 @@ const SelectAction = () => {
   return (
     <Container maxWidth="md">
       <Stack
-        spacing={2}
+        spacing={4}
         direction={"column"}
         alignItems={"center"}
         justifyContent={"space-evenly"}
@@ -42,25 +42,16 @@ const SelectAction = () => {
             >
               History
             </Button>
-            <Divider />
-            <Button
-              onClick={quit}
-              size="large"
-              variant="contained"
-              color="primary"
-              fullWidth
-            >
-              Quit
-            </Button>
           </>
         ) : (
           <>
             <Button
+              component={Link}
+              to="/characters"
               size="large"
               variant="contained"
               color="primary"
               fullWidth
-              onClick={() => {}}
             >
               Characters
             </Button>
@@ -91,6 +82,28 @@ const SelectAction = () => {
             </Button>
           </>
         )}
+
+        <Divider />
+        <Button
+          component={Link}
+          to="/statistics"
+          variant="contained"
+          color="primary"
+          size="large"
+          fullWidth
+        >
+          Statistics
+        </Button>
+        <Divider />
+        <Button
+          onClick={quit}
+          size="large"
+          variant="contained"
+          color="primary"
+          fullWidth
+        >
+          Quit
+        </Button>
       </Stack>
     </Container>
   );

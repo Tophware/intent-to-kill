@@ -436,6 +436,10 @@ const characters: Array<Character> = [
   },
 ];
 
+const getCharacter = (name: string) => {
+  return characters.find((character) => character.name === name);
+};
+
 export const useCharacters = () => {
-  return characters;
+  return { characters, getCharacter };
 };
