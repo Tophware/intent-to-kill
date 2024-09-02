@@ -3,7 +3,6 @@ import { Build, Character, Gender, Height, SocialGroup } from "../types";
 import { MotiveCard } from "../types/MotiveCard";
 import { useCharacters } from "./useCharacters";
 import { useMotives } from "./useMotives";
-import useUtils from "./useUtils";
 
 const calculateStatistics = (characters: Array<Character>) => {
   let statistics: { [key: string | number]: number } = {};
@@ -38,8 +37,6 @@ export const useGameActions = () => {
   const { dispatch } = useGameContext();
 
   const { starterMotives } = useMotives();
-
-  const { shuffleArray } = useUtils();
 
   const startGame = () => {
     const { characters: allCharacters } = useCharacters();
