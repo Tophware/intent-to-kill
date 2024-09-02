@@ -8,7 +8,7 @@ const characters: Array<Character> = [
     gender: Gender.Female,
     age: 40,
     build: Build.Large,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Fence",
@@ -48,7 +48,7 @@ const characters: Array<Character> = [
     gender: Gender.Male,
     age: 60,
     build: Build.Small,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Bus Driver",
@@ -80,7 +80,7 @@ const characters: Array<Character> = [
     gender: Gender.Female,
     age: 60,
     build: Build.Small,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Ice Cream Man",
@@ -88,7 +88,7 @@ const characters: Array<Character> = [
     gender: Gender.Male,
     age: 20,
     build: Build.Medium,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Fireman",
@@ -128,7 +128,7 @@ const characters: Array<Character> = [
     gender: Gender.Male,
     age: 60,
     build: Build.Medium,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Navy Sailor",
@@ -144,7 +144,7 @@ const characters: Array<Character> = [
     gender: Gender.Female,
     age: 40,
     build: Build.Small,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Congressman",
@@ -152,7 +152,7 @@ const characters: Array<Character> = [
     gender: Gender.Male,
     age: 60,
     build: Build.Large,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Secret agent",
@@ -184,7 +184,7 @@ const characters: Array<Character> = [
     gender: Gender.Female,
     age: 40,
     build: Build.Medium,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Lobbyist",
@@ -200,7 +200,7 @@ const characters: Array<Character> = [
     gender: Gender.Female,
     age: 20,
     build: Build.Large,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Veterinarian",
@@ -224,7 +224,7 @@ const characters: Array<Character> = [
     gender: Gender.Male,
     age: 40,
     build: Build.Small,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Orderly",
@@ -264,7 +264,7 @@ const characters: Array<Character> = [
     gender: Gender.Male,
     age: 40,
     build: Build.Large,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Deputy",
@@ -272,7 +272,7 @@ const characters: Array<Character> = [
     gender: Gender.Female,
     age: 20,
     build: Build.Medium,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Lawyer",
@@ -312,7 +312,7 @@ const characters: Array<Character> = [
     gender: Gender.Male,
     age: 20,
     build: Build.Large,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "War Widow",
@@ -328,7 +328,7 @@ const characters: Array<Character> = [
     gender: Gender.Female,
     age: 60,
     build: Build.Medium,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Showgirl",
@@ -352,7 +352,7 @@ const characters: Array<Character> = [
     gender: Gender.Male,
     age: 40,
     build: Build.Medium,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Restaurateur",
@@ -368,7 +368,7 @@ const characters: Array<Character> = [
     gender: Gender.Female,
     age: 20,
     build: Build.Small,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Psychiatrist",
@@ -400,7 +400,7 @@ const characters: Array<Character> = [
     gender: Gender.Male,
     age: 20,
     build: Build.Small,
-    height: Height.Medium,
+    height: Height.Average,
   },
   {
     name: "Photographer",
@@ -432,7 +432,7 @@ const characters: Array<Character> = [
     gender: Gender.Female,
     age: 60,
     build: Build.Large,
-    height: Height.Medium,
+    height: Height.Average,
   },
 ];
 

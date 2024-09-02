@@ -1,7 +1,14 @@
 import React, { createContext, useState } from "react";
 import { allSocialGroups, useGameFunctions } from "./hooks/useGameFunctions";
 import { useMotives } from "./hooks/useMotives";
-import { Character, GameAction, SocialGroup } from "./types";
+import {
+  Build,
+  Character,
+  GameAction,
+  Gender,
+  Height,
+  SocialGroup,
+} from "./types";
 import { MotiveCard } from "./types/MotiveCard";
 
 const WARNING_MURDERER = "The following screen is for the Murderer only!";
@@ -19,6 +26,7 @@ type GameState = {
   personOfInterest?: Character;
   showWarning: boolean;
   warningMessage?: string;
+  statistics?: { [key: string]: number };
   selectSupporters: (supporters: SocialGroup) => void;
   initGame: () => void;
   quit: () => void;
@@ -42,6 +50,7 @@ const initialState: GameState = {
   personOfInterest: undefined,
   showWarning: false,
   warningMessage: WARNING_MURDERER,
+  statistics: {},
   selectSupporters: () => {},
   showCharacters: () => {},
   initGame: () => {},
@@ -72,6 +81,35 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setGameState(initialState);
   };
 
+  const calculateStatistics = (characters: Array<Character>) => {
+    let statistics: { [key: string | number]: number } = {};
+    Object.keys(SocialGroup).forEach((group) => {
+      statistics[group] = 0;
+    });
+    Object.keys(Gender).forEach((gender) => {
+      statistics[gender] = 0;
+    });
+    Object.keys(Build).forEach((build) => {
+      statistics[build] = 0;
+    });
+    Object.keys(Height).forEach((height) => {
+      statistics[height] = 0;
+    });
+    [20, 40, 60].forEach((age) => {
+      statistics[age] = 0;
+    });
+    characters.forEach((character) => {
+      console.log(character);
+      statistics[character.group]++;
+      statistics[character.gender]++;
+      statistics[character.build]++;
+      statistics[character.height]++;
+      statistics[character.age]++;
+    });
+    console.log(statistics);
+    return statistics;
+  };
+
   const initGame = () => {
     let possibleSupporters = getSupporters(3);
     let socialGroups = allSocialGroups().filter(
@@ -79,6 +117,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     );
     let characters = getCharacters(20);
     let motive = getMotive(starterMotives);
+
+    let statistics = calculateStatistics(characters);
 
     let suspects = [...characters].sort(() => Math.random() - 0.5).slice(0, 2);
     let murderer = suspects[0];
@@ -91,6 +131,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       possibleSupporters,
       motive,
       characters,
+      statistics,
       murderer,
       personOfInterest,
       killerChoice: undefined,

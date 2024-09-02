@@ -1,4 +1,11 @@
-import { Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useContext } from "react";
 import { GameContext } from "../GameContext";
 import { MyAppBar } from "../components/MyAppBar";
@@ -12,22 +19,53 @@ const SelectKillerSupporters = () => {
     <>
       <MyAppBar />
       <MyStack>
-        <Typography variant="h3" aria-level={1} gutterBottom>
+        <Typography variant="h4" aria-level={1} gutterBottom>
           Select Supporters
         </Typography>
         {game.possibleSupporters?.map((group) => (
-          <div
-            key={group}
-            role="button"
+          <Button
+            style={{ width: "100%" }}
             onClick={() => {
               game.selectSupporters(group);
             }}
           >
-            <Logo group={group} style={{ width: "40vmin" }} />
-            <Typography variant="h6" aria-level={2} align="center">
-              {group}
-            </Typography>
-          </div>
+            <Card style={{ width: "100%" }}>
+              <CardContent className={group.toLocaleLowerCase()}>
+                <Stack
+                  spacing={4}
+                  direction={"row"}
+                  className={group.toLocaleLowerCase()}
+                >
+                  <Logo group={group} style={{ width: "20vmin" }} />
+                  <Box>
+                    <Typography variant="h6" aria-level={2}>
+                      {group} ({game.statistics![group]})
+                    </Typography>
+                    {(game.murderer?.group === group ||
+                      game.personOfInterest?.group === group) && (
+                      <>
+                        <Typography
+                          component={"p"}
+                          variant="body1"
+                          gutterBottom={false}
+                        >
+                          Includes:
+                          <ul style={{ marginTop: "0px" }}>
+                            {game.murderer?.group === group && (
+                              <li>Murderer</li>
+                            )}
+                            {game.personOfInterest?.group === group && (
+                              <li>Murderer</li>
+                            )}
+                          </ul>
+                        </Typography>
+                      </>
+                    )}
+                  </Box>
+                </Stack>
+              </CardContent>
+            </Card>
+          </Button>
         ))}
       </MyStack>
     </>

@@ -1,5 +1,5 @@
 export enum Height {
   Short = "Short",
-  Medium = "Medium",
+  Average = "Average",
   Tall = "Tall",
 }
