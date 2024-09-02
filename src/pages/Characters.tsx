@@ -1,13 +1,14 @@
 import { Container, Grid2 as Grid, Typography } from "@mui/material";
 
+import { Navigate } from "react-router";
 import { CharacterCard } from "../components/CharacterCard";
 import { MyAppBar } from "../components/MyAppBar";
 import { useGameContext } from "../GameContext";
 
-const ShowCharacters = () => {
+const Characters = () => {
   const { gameState: game } = useGameContext();
 
-  return (
+  return game ? (
     <>
       <MyAppBar />
       <Container maxWidth="md">
@@ -26,6 +27,8 @@ const ShowCharacters = () => {
         </Grid>
       </Container>
     </>
+  ) : (
+    <Navigate to="/" />
   );
 };
-export default ShowCharacters;
+export default Characters;
