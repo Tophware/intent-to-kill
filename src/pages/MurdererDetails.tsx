@@ -25,7 +25,7 @@ const MurdererCardHeader = styled(CardHeader)(({ theme }) => ({
 const MurdererDetails = () => {
   const { gameState: game } = useGameContext();
 
-  return (
+  return game && game.motive ? (
     <>
       <MyAppBar />
       <Container maxWidth="md">
@@ -60,6 +60,6 @@ const MurdererDetails = () => {
         </Stack>
       </Container>
     </>
-  );
+  ) : null;
 };
 export default MurdererDetails;

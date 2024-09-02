@@ -26,7 +26,7 @@ type CharacterCardProps = {
 export const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
-  return (
+  return character ? (
     <Card
       key={character.name}
       className={character.group.toLowerCase()}
@@ -91,5 +91,5 @@ export const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
         </Stack>
       </CardContent>
     </Card>
-  );
+  ) : null;
 };
