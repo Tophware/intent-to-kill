@@ -1,233 +1,100 @@
-import React, { createContext, useState } from "react";
-import { allSocialGroups, useGameFunctions } from "./hooks/useGameFunctions";
-import { useMotives } from "./hooks/useMotives";
 import {
-  Build,
-  Character,
-  GameAction,
-  Gender,
-  Height,
-  SocialGroup,
-} from "./types";
+  createContext,
+  Dispatch,
+  ReactNode,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
+import { Character, SocialGroup } from "./types";
 import { MotiveCard } from "./types/MotiveCard";
 
-const WARNING_MURDERER = "The following screen is for the Murderer only!";
-// const WARNING_DETECTIVE = "The following screen is for the Detective only!";
-
 type GameState = {
-  currentAction?: GameAction;
-  socialGroups: SocialGroup[];
-  possibleSupporters: SocialGroup[];
+  socialGroups?: SocialGroup[];
+  possibleSupporters?: SocialGroup[];
+  history?: SocialGroup[];
+  characters?: Character[];
   supporters?: SocialGroup;
   motive?: MotiveCard;
-  history: SocialGroup[];
-  characters: Character[];
   murderer?: Character;
   personOfInterest?: Character;
-  showWarning: boolean;
-  warningMessage?: string;
   statistics?: { [key: string]: number };
-  selectSupporters: (supporters: SocialGroup) => void;
-  initGame: () => void;
-  quit: () => void;
-  showCharacters: () => void;
-  showActionSelection: () => void;
-  firehouse: () => void;
-  showHistory: () => void;
-  showMotive: () => void;
-  showPossibleSupporters: () => void;
-  dismissWarning: () => void;
 };
 
-// Define the initial state of the game
-const initialState: GameState = {
-  socialGroups: [],
-  possibleSupporters: [],
-  supporters: undefined,
-  history: [],
-  characters: [],
-  murderer: undefined,
-  personOfInterest: undefined,
-  showWarning: false,
-  warningMessage: WARNING_MURDERER,
-  statistics: {},
-  selectSupporters: () => {},
-  showCharacters: () => {},
-  initGame: () => {},
-  showActionSelection: () => {},
-  firehouse: () => {},
-  showMotive: () => {},
-  showHistory: () => {},
-  showPossibleSupporters: () => {},
-  dismissWarning: () => {},
-  quit: () => {},
-};
+export type GameAction =
+  | { type: "START"; payload: GameState }
+  | { type: "SELECT_SUPPORTERS"; payload: SocialGroup }
+  | { type: "FIREHOUSE" }
+  | { type: "QUIT" };
 
-// Create the GameContext
-export const GameContext = createContext(initialState);
+interface GameContextType {
+  gameState?: GameState;
+  dispatch: Dispatch<GameAction>;
+}
+
+const initialState: GameState = {};
+
+export const GameContext = createContext<GameContextType | undefined>(
+  undefined
+);
 
 type GameProviderProps = {
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
-// Create the GameProvider component
-export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
-  const { getCharacters, getSupporters, getMotive } = useGameFunctions();
-  const { starterMotives } = useMotives();
+const gameReducer = (gameState: GameState, action: GameAction): GameState => {
+  switch (action.type) {
+    case "START":
+      return { ...action.payload };
+    case "SELECT_SUPPORTERS":
+      return { ...gameState, supporters: action.payload };
+    case "FIREHOUSE":
+      let randomGroup = gameState.socialGroups!.sort(
+        () => 0.5 - Math.random()
+      )[0];
+      let history = [...(gameState.history ?? [])];
+      history.push(randomGroup);
+      return { ...gameState, history };
+    case "QUIT":
+      return { ...initialState };
+    default:
+      throw new Error(`Unhandled action`);
+  }
+};
 
-  const [gameState, setGameState] = useState(initialState);
+const GameContextProvider = ({ children }: GameProviderProps) => {
+  const [gameState, dispatch] = useReducer(gameReducer, initialState);
 
-  const quit = () => {
-    setGameState(initialState);
-  };
+  useEffect(() => {
+    const savedGameState = localStorage.getItem("gameState");
 
-  const calculateStatistics = (characters: Array<Character>) => {
-    let statistics: { [key: string | number]: number } = {};
-    Object.keys(SocialGroup).forEach((group) => {
-      statistics[group] = 0;
-    });
-    Object.keys(Gender).forEach((gender) => {
-      statistics[gender] = 0;
-    });
-    Object.keys(Build).forEach((build) => {
-      statistics[build] = 0;
-    });
-    Object.keys(Height).forEach((height) => {
-      statistics[height] = 0;
-    });
-    [20, 40, 60].forEach((age) => {
-      statistics[age] = 0;
-    });
-    characters.forEach((character) => {
-      console.log(character);
-      statistics[character.group]++;
-      statistics[character.gender]++;
-      statistics[character.build]++;
-      statistics[character.height]++;
-      statistics[character.age]++;
-    });
-    console.log(statistics);
-    return statistics;
-  };
-
-  const initGame = () => {
-    let possibleSupporters = getSupporters(3);
-    let socialGroups = allSocialGroups().filter(
-      (g) => !possibleSupporters.includes(g)
-    );
-    let characters = getCharacters(20);
-    let motive = getMotive(starterMotives);
-
-    let statistics = calculateStatistics(characters);
-
-    let suspects = [...characters].sort(() => Math.random() - 0.5).slice(0, 2);
-    let murderer = suspects[0];
-    let personOfInterest = suspects[1];
-
-    setGameState((prevState) => ({
-      ...prevState,
-      currentAction: GameAction.ShowActions,
-      socialGroups,
-      possibleSupporters,
-      motive,
-      characters,
-      statistics,
-      murderer,
-      personOfInterest,
-      killerChoice: undefined,
-      history: [],
-    }));
-  };
-
-  const selectSupporters = (supporters: SocialGroup) => {
-    if (!gameState.possibleSupporters.includes(supporters)) {
-      console.error("Invalid supporter");
-    } else if (gameState.supporters) {
-      console.error("Supporter already selected");
-    } else {
-      setGameState((prevState) => ({
-        ...prevState,
-        supporters,
-        currentAction: GameAction.ShowActions,
-      }));
+    if (savedGameState) {
+      console.log("Game state loaded from local storage");
+      console.log(savedGameState);
+      dispatch({ type: "START", payload: JSON.parse(savedGameState) });
     }
-  };
+  }, []);
 
-  const showMotive = () => {
-    setGameState((prevState) => ({
-      ...prevState,
-      showWarning: true,
-      warningMessage: WARNING_MURDERER,
-      currentAction: GameAction.ShowMotive,
-    }));
-  };
-
-  const showCharacters = () => {
-    setGameState((prevState) => ({
-      ...prevState,
-      currentAction: GameAction.ShowCharacters,
-    }));
-  };
-
-  const showActionSelection = () => {
-    setGameState((prevState) => ({
-      ...prevState,
-      currentAction: GameAction.ShowActions,
-    }));
-  };
-
-  const firehouse = () => {
-    let history = gameState.history;
-    let randomSocialGroup = gameState.socialGroups.sort(
-      () => Math.random() - 0.5
-    )[0];
-    history.push(randomSocialGroup);
-    setGameState((prevState) => ({
-      ...prevState,
-      currentAction: GameAction.Firehouse,
-      history,
-    }));
-  };
-
-  const showHistory = () => {
-    setGameState((prevState) => ({
-      ...prevState,
-      currentAction: GameAction.ShowHistory,
-    }));
-  };
-
-  const showPossibleSupporters = () => {
-    setGameState((prevState) => ({
-      ...prevState,
-      showWarning: true,
-      currentAction: GameAction.SelectKillerSupporters,
-    }));
-  };
-
-  const dismissWarning = () => {
-    setGameState((prevState) => ({
-      ...prevState,
-      showWarning: false,
-    }));
-  };
+  useEffect(() => {
+    if (gameState && gameState.murderer) {
+      console.log("Game state saved to local storage");
+      localStorage.setItem("gameState", JSON.stringify(gameState));
+    }
+  }, [gameState]);
 
   return (
-    <GameContext.Provider
-      value={{
-        ...gameState,
-        initGame,
-        selectSupporters,
-        showCharacters,
-        showActionSelection,
-        firehouse,
-        showHistory,
-        showMotive,
-        showPossibleSupporters,
-        dismissWarning,
-        quit,
-      }}
-    >
+    <GameContext.Provider value={{ gameState, dispatch }}>
       {children}
     </GameContext.Provider>
   );
 };
+
+export const useGameContext = () => {
+  const context = useContext(GameContext);
+  if (!context) {
+    throw new Error("useGameContext must be used within a GameContextProvider");
+  }
+  return context;
+};
+
+export default GameContextProvider;

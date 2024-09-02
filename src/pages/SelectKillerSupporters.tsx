@@ -6,27 +6,30 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useContext } from "react";
-import { GameContext } from "../GameContext";
+import { Navigate } from "react-router";
 import { MyAppBar } from "../components/MyAppBar";
 import MyStack from "../components/MyStack";
 import { Logo } from "../components/SocialGroupLogos";
+import { useGameContext } from "../GameContext";
+import { useGameActions } from "../hooks/useGameActions";
 
 const SelectKillerSupporters = () => {
-  const game = useContext(GameContext);
+  const { gameState: game } = useGameContext();
+  const { selectSupporters } = useGameActions();
 
-  return (
+  return game && !game.supporters ? (
     <>
       <MyAppBar />
       <MyStack>
         <Typography variant="h4" aria-level={1} gutterBottom>
           Select Supporters
         </Typography>
-        {game.possibleSupporters?.map((group) => (
+        {game.possibleSupporters?.map((group, index) => (
           <Button
+            key={`${group}-${index}`}
             style={{ width: "100%" }}
             onClick={() => {
-              game.selectSupporters(group);
+              selectSupporters(group);
             }}
           >
             <Card style={{ width: "100%" }}>
@@ -55,7 +58,7 @@ const SelectKillerSupporters = () => {
                               <li>Murderer</li>
                             )}
                             {game.personOfInterest?.group === group && (
-                              <li>Murderer</li>
+                              <li>Person of Interest</li>
                             )}
                           </ul>
                         </Typography>
@@ -69,6 +72,8 @@ const SelectKillerSupporters = () => {
         ))}
       </MyStack>
     </>
+  ) : (
+    <Navigate to="/" />
   );
 };
 export default SelectKillerSupporters;

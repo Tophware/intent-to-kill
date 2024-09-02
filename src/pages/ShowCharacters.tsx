@@ -1,12 +1,11 @@
 import { Container, Grid2 as Grid, Typography } from "@mui/material";
-import { useContext } from "react";
-import { GameContext } from "../GameContext";
 
 import { CharacterCard } from "../components/CharacterCard";
 import { MyAppBar } from "../components/MyAppBar";
+import { useGameContext } from "../GameContext";
 
 const ShowCharacters = () => {
-  const game = useContext(GameContext);
+  const { gameState: game } = useGameContext();
 
   return (
     <>
