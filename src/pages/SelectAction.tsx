@@ -20,6 +20,17 @@ const SelectAction = () => {
         <Typography variant="h3" aria-level={1} gutterBottom>
           Select Action
         </Typography>
+        <Button
+          component={Link}
+          to="/characters"
+          size="large"
+          variant="contained"
+          color="primary"
+          fullWidth
+        >
+          Characters
+        </Button>
+        <Divider />
         {game!.supporters ? (
           <>
             <Button
@@ -42,29 +53,9 @@ const SelectAction = () => {
             >
               History
             </Button>
-            <Divider />
-            <Button
-              onClick={quit}
-              size="large"
-              variant="contained"
-              color="primary"
-              fullWidth
-            >
-              Quit
-            </Button>
           </>
         ) : (
           <>
-            <Button
-              size="large"
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={() => {}}
-            >
-              Characters
-            </Button>
-            <Divider />
             <Typography variant="h4" aria-level={2} gutterBottom>
               Murderer Only
             </Typography>
@@ -91,6 +82,16 @@ const SelectAction = () => {
             </Button>
           </>
         )}
+        <Divider />
+        <Button
+          onClick={quit}
+          size="large"
+          variant="contained"
+          color="primary"
+          fullWidth
+        >
+          Quit
+        </Button>
       </Stack>
     </Container>
   );
