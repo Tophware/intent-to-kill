@@ -1,6 +1,6 @@
 .authority {
   background-color: #253d7f;
-  
+
 }
 
 .criminals {
@@ -25,7 +25,7 @@
 
 .medicine {
   background-color: #007350;
-} 
+}
 
 .outcasts {
   background-color: #74432d;
@@ -33,4 +33,12 @@
 
 .press {
   background-color: #eea616;
-} 
+}
+
+.male {
+  background-color: darkblue;
+}
+
+.female {
+  background-color: #E4007C;
+}

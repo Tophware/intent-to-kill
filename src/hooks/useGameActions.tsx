@@ -95,6 +95,10 @@ export const useGameActions = () => {
     dispatch({ type: "FIREHOUSE" });
   };
 
+  const moveCivilians = () => {
+    dispatch({ type: "MOVE_CIVILIANS" });
+  };
+
   const quit = () => {
     dispatch({ type: "QUIT" });
   };
@@ -102,6 +106,7 @@ export const useGameActions = () => {
   return {
     startGame,
     selectSupporters,
+    moveCivilians,
     firehouse,
     quit,
   };

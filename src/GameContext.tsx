@@ -11,7 +11,7 @@ import { MotiveCard } from "./types/MotiveCard";
 
 const LOCAL_STORAGE_KEY = "gameState";
 
-type GameState = {
+export type GameState = {
   socialGroups?: SocialGroup[];
   possibleSupporters?: SocialGroup[];
   history?: SocialGroup[];
@@ -28,6 +28,7 @@ export type GameAction =
   | { type: "START"; payload: GameState }
   | { type: "SELECT_SUPPORTERS"; payload: SocialGroup }
   | { type: "FIREHOUSE" }
+  | { type: "MOVE_CIVILIANS" }
   | { type: "QUIT" };
 
 interface GameContextType {
@@ -51,6 +52,13 @@ const gameReducer = (gameState: GameState, action: GameAction): GameState => {
       return { ...action.payload };
     case "SELECT_SUPPORTERS":
       return { ...gameState, supporters: action.payload };
+    case "MOVE_CIVILIANS":
+      let civilians = gameState
+        .socialGroups!.sort(() => 0.5 - Math.random())
+        .slice(0, 2);
+      let newHistory = [...(gameState.history ?? [])];
+      newHistory.push(...civilians);
+      return { ...gameState, history: newHistory };
     case "FIREHOUSE":
       let randomGroup = gameState.socialGroups!.sort(
         () => 0.5 - Math.random()

@@ -6,7 +6,6 @@ import {
   CardHeader,
   Stack,
   styled,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import { Character, Gender } from "../types";
@@ -16,6 +15,7 @@ const Characteristic = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
+  fontSize: "2rem",
 }));
 
 type CharacterCardProps = {
@@ -40,41 +40,36 @@ export const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
       <CardContent className={character.group.toLowerCase()}>
         <Stack
           direction={"row"}
-          alignContent={"flex-start"}
-          alignItems={"center"}
-        >
-          <Logo
-            group={character.group}
-            style={{
-              height: "30px",
-            }}
-          />
-          <Typography pl={1} variant="h6" color="text.primary">
-            {character.group}
-          </Typography>
-        </Stack>
-        <Stack
-          direction={"row"}
           justifyContent={"space-around"}
           alignItems={"start"}
         >
           <Characteristic>
+            <Logo
+              group={character.group}
+              style={{
+                height: "3rem",
+              }}
+            />
+          </Characteristic>
+          <Characteristic>
             {character.gender === Gender.Male ? (
               <MaleIcon
+                className="male"
                 sx={{
-                  border: "2px solid lightblue",
                   borderRadius: "50%",
-                  backgroundColor: "lightblue",
-                  color: "black",
+                  border: "2px solid",
+                  height: "2rem",
+                  width: "2rem",
                 }}
               />
             ) : (
               <FemaleIcon
+                className="female"
                 sx={{
-                  border: "2px solid lightpink",
+                  border: "2px solid",
                   borderRadius: "50%",
-                  backgroundColor: "lightpink",
-                  color: "black",
+                  width: "2rem",
+                  height: "2rem",
                 }}
               />
             )}

@@ -4,6 +4,7 @@ import Characters from "./pages/Characters";
 import Firehouse from "./pages/Firehouse";
 import History from "./pages/History";
 import Home from "./pages/Home";
+import MoveCivilians from "./pages/MoveCivilians";
 import MurdererDetails from "./pages/MurdererDetails";
 import SelectAction from "./pages/SelectAction";
 import SelectKillerSupporters from "./pages/SelectKillerSupporters";
@@ -14,6 +15,7 @@ function App() {
 
   return game?.murderer ? (
     <Routes>
+      <Route path="/move-civilians" element={<MoveCivilians />} />
       <Route path="/statistics" element={<Statistics />} />
       <Route path="/characters" element={<Characters />} />
       <Route path="/history" element={<History />} />

@@ -13,7 +13,6 @@ const Firehouse: React.FC = () => {
   const hasRun = useRef<boolean>(false);
   useEffect(() => {
     if (!hasRun.current) {
-      console.log("Calling firehouse???");
       firehouse();
       console.log(game?.history);
       hasRun.current = true;
