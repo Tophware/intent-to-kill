@@ -8,15 +8,16 @@ import {
   Typography,
 } from "@mui/material";
 import { blue, green, red } from "@mui/material/colors";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { GameState, useGameContext } from "../GameContext";
+import { useGameContext } from "../GameContext";
 import { useGameActions } from "../hooks/useGameActions";
 
 type GameProps = {
-  game: GameState;
+  isActive: boolean;
 };
 
-const MurdererStartingActions = ({ game }: GameProps) => {
+const MurdererStartingActions = ({ isActive }: GameProps) => {
   return (
     <Card elevation={1}>
       <CardHeader title="Murderer" sx={{ backgroundColor: red[900] }} />
@@ -34,7 +35,7 @@ const MurdererStartingActions = ({ game }: GameProps) => {
           >
             Murderer Details
           </Button>
-          {!game.supporters && (
+          {!isActive && (
             <Button
               component={Link}
               to="/select-supporters"
@@ -54,13 +55,13 @@ const MurdererStartingActions = ({ game }: GameProps) => {
   );
 };
 
-const GameActions = ({ game }: GameProps) => {
+const GameActions = ({ isActive }: GameProps) => {
   return (
     <Card elevation={1}>
       <CardHeader title="Game Actions" sx={{ backgroundColor: green[900] }} />
       <CardContent sx={{ backgroundColor: green["A100"] }}>
         <Stack direction={"column"} spacing={2}>
-          {game.supporters ? (
+          {isActive ? (
             <>
               <Button
                 component={Link}
@@ -99,7 +100,7 @@ const GameActions = ({ game }: GameProps) => {
   );
 };
 
-const InformationActions = ({ game }: GameProps) => {
+const InformationActions = ({ isActive }: GameProps) => {
   return (
     <Card elevation={1}>
       <CardHeader title="Information" sx={{ backgroundColor: blue[900] }} />
@@ -129,7 +130,7 @@ const InformationActions = ({ game }: GameProps) => {
           >
             Statistics
           </Button>
-          {game.supporters && (
+          {isActive && (
             <Button
               component={Link}
               to="/history"
@@ -153,15 +154,19 @@ const SelectAction = () => {
   const { gameState: game } = useGameContext();
   const { quit } = useGameActions();
 
+  const isActive = useMemo(() => {
+    return game && game.supporters ? true : false;
+  }, [game]);
+
   return (
     <Container maxWidth="md">
       <Stack spacing={4} mt={2} direction={"column"}>
         <Typography variant="h3" aria-level={1} gutterBottom>
           Actions
         </Typography>
-        <GameActions game={game} />
-        <InformationActions game={game} />
-        <MurdererStartingActions game={game} />
+        <GameActions isActive={isActive} />
+        <InformationActions isActive={isActive} />
+        <MurdererStartingActions isActive={isActive} />
         <Button
           onClick={quit}
           size="large"
