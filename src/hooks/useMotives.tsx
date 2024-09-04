@@ -1,65 +1,69 @@
-import { Motive } from "../types";
-import { MotiveCard } from "../types/MotiveCard";
+import { Motive, MotiveName } from "../types";
 
-const allMotives: Array<MotiveCard> = [
+const allMotives: Array<Motive> = [
   {
-    motive: Motive.Killer,
+    name: MotiveName.Killer,
     description: "You can only kill civilians who are alone in a block.",
   },
   {
-    motive: Motive.Cutthroat,
+    name: MotiveName.Cutthroat,
     description:
       "You cannot murder in the four (4) central blocks of the city.",
   },
   {
-    motive: Motive.Maniac,
+    name: MotiveName.Maniac,
     description: "All victims must be of the same sex.",
   },
   {
-    motive: Motive.Sadist,
+    name: MotiveName.Sadist,
     description: "You cannot murder intimidated civilians.",
   },
   {
-    motive: Motive.Vigilante,
+    name: MotiveName.Vigilante,
     description:
       "You cannot murder anyone in the eight (8) blocks surrounding the Detective marker.",
   },
   {
-    motive: Motive.Terrorist,
+    name: MotiveName.Terrorist,
     description: "All victims must be from different social groups",
   },
   {
-    motive: Motive.Cultist,
+    name: MotiveName.Cultist,
     description:
       "The first victim has to be of a different social group than the Person of Interest. Each victim has to be from a different social group than the last. Has to murder the Person of Interest.",
   },
   {
-    motive: Motive.Robber,
+    name: MotiveName.Robber,
     description:
       "You cannot murder anyone in any block adjacent to the last crime scene.",
   },
   {
-    motive: Motive.Cannibal,
+    name: MotiveName.Cannibal,
     description:
       "There have to be civilians of all three different builds among the victims",
   },
   {
-    motive: Motive.Radical,
+    name: MotiveName.Radical,
     description: "At least 3 victims have to be from the same social group.",
   },
   {
-    motive: Motive.Psychopath,
+    name: MotiveName.Psychopath,
     description: "All victims can be of no more than two different ages.",
   },
   {
-    motive: Motive.Spy,
+    name: MotiveName.Spy,
     description: "All victims have to be murdered in blocks with buildings.",
   },
 ];
+
+const getMotive = (name: MotiveName) => {
+  return allMotives.find((motive) => motive.name === name);
+};
 
 const starterMotives = allMotives.slice(0, 6);
 
 export const useMotives = () => ({
   allMotives,
   starterMotives,
+  getMotive,
 });

@@ -1,4 +1,4 @@
-export enum Motive {
+export enum MotiveName {
   Maniac = "Maniac",
   Sadist = "Sadist",
   Cutthroat = "Cutthroat",
@@ -12,3 +12,8 @@ export enum Motive {
   Psychopath = "Psychopath",
   Spy = "Spy",
 }
+
+export type Motive = {
+  name: MotiveName;
+  description?: string;
+};

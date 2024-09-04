@@ -25,7 +25,7 @@ const MurdererStartingActions = ({ isActive }: GameProps) => {
         <Stack direction={"column"} spacing={2}>
           <Button
             component={Link}
-            to="/murderer-details"
+            to="/warning/murderer-details"
             variant="contained"
             fullWidth
             color="inherit"
@@ -38,7 +38,7 @@ const MurdererStartingActions = ({ isActive }: GameProps) => {
           {!isActive && (
             <Button
               component={Link}
-              to="/select-supporters"
+              to="/warning/select-supporters"
               variant="contained"
               fullWidth
               color="inherit"
@@ -117,6 +117,18 @@ const InformationActions = ({ isActive }: GameProps) => {
             }}
           >
             Characters
+          </Button>
+          <Button
+            component={Link}
+            to="/motives"
+            variant="contained"
+            fullWidth
+            color="inherit"
+            sx={{
+              background: blue[900],
+            }}
+          >
+            Motives
           </Button>
           <Button
             component={Link}

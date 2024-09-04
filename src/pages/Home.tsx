@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
 import IntentToKill from "../assets/intent-to-kill-logo.svg";
 import MyStack from "../components/MyStack";
@@ -11,17 +11,29 @@ const Home: React.FC = () => {
   return game ? (
     <MyStack justifyContent={"space-between"}>
       <Box component="img" src={IntentToKill} alt="Intent to Kill" />
-
-      <Button
-        variant="outlined"
-        color="primary"
-        size="large"
-        onClick={() => {
-          startGame();
-        }}
-      >
-        Start Game
-      </Button>
+      <Stack spacing={4}>
+        <Typography variant="h4">New Game</Typography>
+        <Button
+          variant="outlined"
+          color="primary"
+          size="large"
+          onClick={() => {
+            startGame();
+          }}
+        >
+          Starter Motives
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          size="large"
+          onClick={() => {
+            startGame(false);
+          }}
+        >
+          Random Motives
+        </Button>
+      </Stack>
       <Box />
     </MyStack>
   ) : (

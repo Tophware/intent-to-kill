@@ -6,8 +6,8 @@ import {
   useEffect,
   useReducer,
 } from "react";
-import { Character, SocialGroup } from "./types";
-import { MotiveCard } from "./types/MotiveCard";
+import useUtils from "./hooks/useUtils";
+import { Character, Motive, SocialGroup } from "./types";
 
 const LOCAL_STORAGE_KEY = "gameState";
 
@@ -17,7 +17,8 @@ export type GameState = {
   history?: SocialGroup[];
   characters?: Character[];
   supporters?: SocialGroup;
-  motive?: MotiveCard;
+  motive?: Motive;
+  motives?: Motive[];
   murderer?: Character;
   detective?: Character;
   personOfInterest?: Character;
@@ -47,22 +48,19 @@ type GameProviderProps = {
 };
 
 const gameReducer = (gameState: GameState, action: GameAction): GameState => {
+  const { randomSort } = useUtils();
   switch (action.type) {
     case "START":
       return { ...action.payload };
     case "SELECT_SUPPORTERS":
       return { ...gameState, supporters: action.payload };
     case "MOVE_CIVILIANS":
-      let civilians = gameState
-        .socialGroups!.sort(() => 0.5 - Math.random())
-        .slice(0, 2);
+      let civilians = gameState.socialGroups!.sort(randomSort).slice(0, 2);
       let newHistory = [...(gameState.history ?? [])];
       newHistory.push(...civilians);
       return { ...gameState, history: newHistory };
     case "FIREHOUSE":
-      let randomGroup = gameState.socialGroups!.sort(
-        () => 0.5 - Math.random()
-      )[0];
+      let randomGroup = gameState.socialGroups!.sort(randomSort)[0];
       let history = [...(gameState.history ?? [])];
       history.push(randomGroup);
       return { ...gameState, history };

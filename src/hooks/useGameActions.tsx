@@ -1,8 +1,15 @@
 import { useGameContext } from "../GameContext";
-import { Build, Character, Gender, Height, SocialGroup } from "../types";
-import { MotiveCard } from "../types/MotiveCard";
+import {
+  Build,
+  Character,
+  Gender,
+  Height,
+  Motive,
+  SocialGroup,
+} from "../types";
 import { useCharacters } from "./useCharacters";
 import { useMotives } from "./useMotives";
+import useUtils from "./useUtils";
 
 const calculateStatistics = (characters: Array<Character>) => {
   let statistics: { [key: string | number]: number } = {};
@@ -35,20 +42,21 @@ const calculateStatistics = (characters: Array<Character>) => {
 
 export const useGameActions = () => {
   const { dispatch } = useGameContext();
+  const { randomSort } = useUtils();
 
-  const { starterMotives } = useMotives();
+  const { starterMotives, allMotives } = useMotives();
 
-  const startGame = () => {
+  const startGame = (starter: boolean = true) => {
     const { characters: allCharacters } = useCharacters();
 
     // Get 20 random characters
     let characters: Character[] = [...allCharacters]
-      .sort(() => 0.5 - Math.random())
+      .sort(randomSort)
       .slice(0, 20);
 
     console.log(characters);
     // Identify the Murderer and Person of Interest
-    let villains: Character[] = [...characters].sort(() => 0.5 - Math.random());
+    let villains: Character[] = [...characters].sort(randomSort);
 
     let murderer: Character = villains.splice(
       Math.floor(Math.random() * villains.length - 1),
@@ -61,13 +69,16 @@ export const useGameActions = () => {
     )[0];
 
     // Get 3 random social groups
-    let socialGroups = Object.values(SocialGroup).sort(
-      () => 0.5 - Math.random()
-    );
+    let socialGroups = Object.values(SocialGroup).sort(randomSort);
     let possibleSupporters = socialGroups.splice(0, 3);
 
+    // Get possible motives
+    let motives = starter
+      ? [...starterMotives]
+      : [...allMotives].sort(randomSort).slice(0, 6);
+
     // Select a random Motive from base motives
-    let motive: MotiveCard = starterMotives.sort(() => 0.5 - Math.random())[0];
+    let motive: Motive = motives.sort(randomSort)[0];
 
     // get statistics
     let statistics = calculateStatistics(characters);
@@ -81,6 +92,7 @@ export const useGameActions = () => {
         socialGroups,
         possibleSupporters,
         motive,
+        motives,
         history: [],
         statistics,
       },

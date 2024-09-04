@@ -1,13 +1,17 @@
 import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export const MyAppBar = () => {
+type Props = {
+  disabled?: boolean;
+};
+
+export const MyAppBar = ({ disabled = false }: Props) => {
   return (
     <>
       <AppBar position="fixed">
         <Toolbar>
           <Box sx={{ flexGrow: 1 }} />
-          <Button component={Link} to="/" color="inherit">
+          <Button disabled={disabled} component={Link} to="/" color="inherit">
             Back
           </Button>
         </Toolbar>

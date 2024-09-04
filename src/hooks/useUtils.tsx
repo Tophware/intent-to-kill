@@ -20,10 +20,13 @@ const getRandomEnum = <T extends object>(enumObject: T): T[keyof T] => {
   return enumValues[randomIndex] as T[keyof T];
 };
 
+const randomSort = () => 0.5 - Math.random();
+
 const useUtils = () => {
   return {
     getRandomInt,
     getRandomEnum,
+    randomSort,
   };
 };
 

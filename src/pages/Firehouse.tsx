@@ -1,8 +1,7 @@
-import { Button } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { Navigate } from "react-router";
-import { Link } from "react-router-dom";
-import MyStack from "../components/MyStack";
+import { MyAppBar } from "../components/MyAppBar";
 import SocialGroupCard from "../components/SocialGroupCard";
 import { useGameContext } from "../GameContext";
 import { useGameActions } from "../hooks/useGameActions";
@@ -21,16 +20,21 @@ const Firehouse: React.FC = () => {
 
   if (game && game.history) {
     return (
-      <MyStack>
-        {game.history.length > 0 ? (
-          <SocialGroupCard group={game.history[game.history.length - 1]} />
-        ) : (
-          <div>No history</div>
-        )}
-        <Button component={Link} to="/">
-          Back
-        </Button>
-      </MyStack>
+      <>
+        <MyAppBar />
+        <Container maxWidth="md">
+          <Stack pt={2} pb={2} spacing={2}>
+            <Typography variant="h4" aria-level={1} gutterBottom>
+              Firehouse
+            </Typography>
+            {game.history.length > 0 ? (
+              <SocialGroupCard group={game.history[game.history.length - 1]} />
+            ) : (
+              <div>No history</div>
+            )}
+          </Stack>
+        </Container>
+      </>
     );
   } else {
     <Navigate to="/" />;

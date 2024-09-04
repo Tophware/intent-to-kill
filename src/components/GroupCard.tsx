@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SocialGroup } from "./types";
+import { SocialGroup } from "../types";
 const icons = import.meta.glob("./assets/icons/*.svg");
 
 type GroupCardProps = {

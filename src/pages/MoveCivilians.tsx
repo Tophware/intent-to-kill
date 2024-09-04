@@ -1,9 +1,7 @@
-import { Button, Container, Stack, Typography } from "@mui/material";
+import { Button, Container, Divider, Stack, Typography } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { Navigate } from "react-router";
-import { Link } from "react-router-dom";
 import { MyAppBar } from "../components/MyAppBar";
-import MyStack from "../components/MyStack";
 import SocialGroupCard from "../components/SocialGroupCard";
 import { useGameContext } from "../GameContext";
 import { useGameActions } from "../hooks/useGameActions";
@@ -24,18 +22,22 @@ const MoveCivilians: React.FC = () => {
   if (game && game.history) {
     return (
       <>
-        <MyAppBar />
+        <MyAppBar disabled={!showDetectiveMovement} />
         <Container maxWidth="md">
-          <MyStack>
+          <Stack pt={2} pb={2} spacing={2}>
+            <Typography variant="h3" aria-level={1} gutterBottom>
+              Move Civilians
+            </Typography>
             {game.history.length > 0 ? (
               <Stack direction="column" spacing={2}>
                 <Typography variant="h5" aria-level={1} gutterBottom>
-                  Murderer Movement
+                  Murderer
                 </Typography>
                 <SocialGroupCard
                   group={game.history[game.history.length - 2]}
                 />
-                <Typography variant="h3" aria-level={1} gutterBottom>
+                <Divider />
+                <Typography variant="h5" aria-level={1} gutterBottom>
                   Detective
                 </Typography>
                 {showDetectiveMovement ? (
@@ -58,10 +60,7 @@ const MoveCivilians: React.FC = () => {
             ) : (
               <div>No history</div>
             )}
-            <Button component={Link} to="/" disabled={!showDetectiveMovement}>
-              Back
-            </Button>
-          </MyStack>
+          </Stack>
         </Container>
       </>
     );
