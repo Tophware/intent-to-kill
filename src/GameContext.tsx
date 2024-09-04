@@ -53,7 +53,13 @@ const gameReducer = (gameState: GameState, action: GameAction): GameState => {
     case "START":
       return { ...action.payload };
     case "SELECT_SUPPORTERS":
-      return { ...gameState, supporters: action.payload };
+      let supporters = action.payload;
+      let possibleSupporters = gameState.possibleSupporters
+        ? [...gameState.possibleSupporters]
+        : [];
+      let supporterIndex = possibleSupporters.indexOf(supporters);
+      possibleSupporters.splice(supporterIndex, 1);
+      return { ...gameState, supporters, possibleSupporters };
     case "MOVE_CIVILIANS":
       let civilians = gameState.socialGroups!.sort(randomSort).slice(0, 2);
       let newHistory = [...(gameState.history ?? [])];

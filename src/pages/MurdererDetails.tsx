@@ -1,4 +1,4 @@
-import { Container, Stack, Typography } from "@mui/material";
+import { Container, Grid2 as Grid, Stack, Typography } from "@mui/material";
 import { CharacterCard } from "../components/CharacterCard";
 import { MotiveCard } from "../components/MotiveCard";
 import { MyAppBar } from "../components/MyAppBar";
@@ -32,27 +32,39 @@ const MurdererDetails = () => {
             </Typography>
             <CharacterCard character={game.personOfInterest!} />
           </div>
-          <div>
-            {game.supporters ? (
-              <>
+          {game.supporters ? (
+            <>
+              <div>
                 <Typography variant="h4" aria-level={2} gutterBottom>
                   Supporters
                 </Typography>
                 <SocialGroupCard group={game.supporters!} />
-              </>
-            ) : (
-              <>
+              </div>
+              <div>
                 <Typography variant="h4" aria-level={2} gutterBottom>
-                  Possible Supporters
+                  Discarded
                 </Typography>
-                <Stack spacing={2}>
-                  {game.possibleSupporters?.map((group) => (
-                    <SocialGroupCard key={group} group={group} />
+                <Grid container spacing={2}>
+                  {game.possibleSupporters!.map((group) => (
+                    <Grid size={6} key={group}>
+                      <SocialGroupCard group={group} />
+                    </Grid>
                   ))}
-                </Stack>
-              </>
-            )}
-          </div>
+                </Grid>
+              </div>
+            </>
+          ) : (
+            <div>
+              <Typography variant="h4" aria-level={2} gutterBottom>
+                Possible Supporters
+              </Typography>
+              <Stack spacing={2}>
+                {game.possibleSupporters?.map((group) => (
+                  <SocialGroupCard key={group} group={group} />
+                ))}
+              </Stack>
+            </div>
+          )}
         </Stack>
       </Container>
     </>
