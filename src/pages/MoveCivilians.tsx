@@ -19,7 +19,7 @@ const MoveCivilians: React.FC = () => {
     }
   }, []);
 
-  if (game && game.history) {
+  if (game && game.history && game.history.length >= 2) {
     return (
       <>
         <MyAppBar disabled={!showDetectiveMovement} />
